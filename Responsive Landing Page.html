@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Café Mocha Loko - The Most Serious Fun in a Cup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    /* CSS Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fad0c4 50%, #a18cd1 100%);
+      color: #333333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      user-select: none;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    a:focus-visible {
+      outline: 3px dashed #30e3ca;
+      outline-offset: 4px;
+    }
+
+    /* Container and layout */
+    .container {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: transparent;
+      color: #fff;
+      z-index: 1000;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+      font-weight: 600;
+      font-family: 'Fredoka One', cursive;
+      user-select: none;
+      padding: 0 24px;
+    }
+    header.scrolled {
+      background: linear-gradient(90deg, #ff69b4 0%, #7b2ff7 100%);
+      box-shadow: 0 0 18px 3px rgba(123, 47, 247, 0.7);
+      color: #ffe;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 90px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      user-select: none;
+      cursor: pointer;
+    }
+    .logo-link svg {
+      height: 80px; /* enlarged from 56 to 80 */
+      width: auto;
+      margin-right: 16px;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-size: 2.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 800;
+      font-family: 'Fredoka One', cursive;
+      color: currentColor;
+      user-select: none;
+      white-space: nowrap;
+    }
+    nav {
+      display: flex;
+      gap: 36px;
+    }
+    nav a {
+      font-weight: 700;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 6px 0;
+      color: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      transition: color 0.25s ease;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 4px;
+      background: #30e3ca;
+      border-radius: 12px;
+      transition: width 0.35s ease;
+    }
+    nav a:hover,
+    nav a:focus-visible {
+      color: #30e3ca;
+    }
+    nav a:hover::after,
+    nav a:focus-visible::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    main {
+      padding-top: 110px; /* increased padding to accommodate larger header */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    }
+    #hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 96px 24px 128px;
+      background: linear-gradient(145deg, #fa709a 0%, #fee140 100%);
+      border-radius: 32px;
+      margin: 0 24px;
+      color: #222;
+      box-shadow:
+        0 8px 28px rgba(255 105 180 / 0.45),
+        0 0 40px rgba(254 225 64 / 0.7);
+    }
+    #hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 4.5rem;
+      margin-bottom: 20px;
+      user-select: none;
+      text-shadow:
+        2px 2px 5px rgba(0,0,0,0.1);
+    }
+    #hero p {
+      max-width: 720px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 56px;
+      user-select: none;
+      line-height: 1.4;
+      color: #2e2e2e;
+      font-style: italic;
+    }
+    #hero button {
+      background: linear-gradient(135deg, #30e3ca, #ff8a00);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.3rem;
+      padding: 18px 60px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(48, 227, 202, 0.75);
+      transition: 
+        background 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      user-select: none;
+    }
+    #hero button:hover,
+    #hero button:focus-visible {
+      background: linear-gradient(135deg, #ff8a00, #30e3ca);
+      box-shadow: 0 14px 40px rgba(255, 138, 0, 0.85);
+      transform: translateY(-6px) rotate(-2deg);
+      outline: none;
+    }
+
+    /* Sections */
+    section {
+      padding: 96px 24px 128px;
+      color: #333;
+      font-weight: 600;
+    }
+    section h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3rem;
+      color: #a020f0;
+      margin-bottom: 28px;
+      text-align: center;
+      user-select: none;
+      text-shadow: 1px 1px 5px #f0f;
+    }
+    section p {
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.15rem;
+      text-align: center;
+      user-select: none;
+      color: #444;
+      font-style: oblique;
+      opacity: 0.85;
+      margin-bottom: 48px;
+    }
+
+    /* Feature grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 54px;
+      max-width: 1140px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .feature-card {
+      background: linear-gradient(160deg, #fff0f6 0%, #f0fff4 100%);
+      border-radius: 28px;
+      padding: 24px 20px 40px;
+      box-shadow: 0 8px 30px rgba(160 32 240 / 0.23);
+      transition: box-shadow 0.36s ease, transform 0.36s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: "☕️";
+      font-size: 6rem;
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      opacity: 0.12;
+      pointer-events: none;
+      user-select: none;
+    }
+    .feature-card:hover,
+    .feature-card:focus-within {
+      box-shadow: 0 15px 50px rgba(160, 32, 240, 0.55);
+      transform: translateY(-12px) rotate(-1deg);
+      background: linear-gradient(160deg, #f985f9 20%, #30e3ca 90%);
+      color: white;
+      outline: none;
+    }
+    .feature-card:hover::before,
+    .feature-card:focus-within::before {
+      opacity: 0.22;
+      transform: rotate(15deg);
+    }
+    .feature-image-container {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 22px rgba(48, 227, 202, 0.25);
+      transition: box-shadow 0.3s ease;
+    }
+    .feature-card:hover .feature-image-container,
+    .feature-card:focus-within .feature-image-container {
+      box-shadow: 0 6px 30px rgba(255, 138, 0, 0.7);
+    }
+    .feature-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+      border-radius: 24px;
+      display: block;
+    }
+    .feature-card:hover .feature-image-container img,
+    .feature-card:focus-within .feature-image-container img {
+      transform: scale(1.07) rotate(-2deg);
+      outline: none;
+    }
+    .feature-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.75rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+      user-select: text;
+      text-shadow: 0 0 3px #30e3ca;
+    }
+    .feature-description {
+      color: inherit;
+      font-weight: 600;
+      font-size: 1.15rem;
+      line-height: 1.4;
+      user-select: text;
+      font-style: italic;
+      transition: color 0.3s ease;
+    }
+    .feature-card:hover .feature-description,
+    .feature-card:focus-within .feature-description {
+      color: #ffe;
+    }
+
+    /* Large image section */
+    .image-section {
+      max-width: 1140px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow:
+        0 12px 56px rgba(160, 32, 240, 0.35),
+        0 0 48px rgba(48, 227, 202, 0.7);
+      margin-top: 44px;
+      margin-bottom: 44px;
+      transition: box-shadow 0.5s ease;
+    }
+    .image-section:hover,
+    .image-section:focus-visible {
+      box-shadow:
+        0 18px 78px rgba(255, 138, 0, 0.6),
+        0 0 58px rgba(255, 138, 0, 0.85);
+      outline: none;
+    }
+    .image-section img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 520px;
+      border-radius: 32px;
+      transition: transform 0.6s ease;
+    }
+    .image-section img:hover,
+    .image-section img:focus-visible {
+      transform: scale(1.04) rotate(1deg);
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #30e3ca, #ff8a00);
+      padding: 56px 24px;
+      color: #222;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      font-family: 'Fredoka One', cursive;
+      user-select: none;
+      letter-spacing: 0.1em;
+      text-shadow:
+        1px 1px 3px #0003;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 3.25rem;
+      }
+      nav {
+        gap: 18px;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+      section {
+        padding-top: 72px;
+        padding-bottom: 72px;
+      }
+      #hero {
+        padding: 72px 24px 96px;
+        margin: 0 12px;
+      }
+      .feature-card {
+        padding: 24px 18px 36px;
+      }
+      .feature-image-container {
+        height: 160px;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header" role="banner">
+    <div class="header-container container" role="navigation" aria-label="Primary Navigation">
+      <a href="#hero" class="logo-link" aria-label="Go to homepage" tabindex="0">
+        <svg width="80" height="80" viewBox="0 0 320 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc" >
+          <title id="logoTitle">Café Mocha Loko Logo</title>
+          <desc id="logoDesc">A colorful playful logo with a stylized coffee cup and the text Mocha Loko</desc>
+          <defs>
+            <linearGradient id="cupGradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FF69B4"/>
+              <stop offset="100%" stop-color="#30E3CA"/>
+            </linearGradient>
+            <filter id="shadow" x="-20" y="-20" width="140" height="140" color-interpolation-filters="sRGB" >
+              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#30E3CA" flood-opacity="0.5"/>
+            </filter>  
+          </defs>
+          <g filter="url(#shadow)">
+            <path d="M41.293 50a12 12 0 1124 0 12 12 0 01-24 0z" fill="url(#cupGradient)"/>
+            <path d="M50.293 38v-6m-7 8h14m-14 16h14m1-7c6 0 10 5 8 11-2 7-16 5-16-3v-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <text x="80" y="65" font-family="'Fredoka One', cursive" font-size="42" font-weight="800" fill="url(#cupGradient)" stroke="#302432" stroke-width="1.5" paint-order="stroke">
+            Mocha
+          </text>
+          <text x="80" y="95" font-family="'Fredoka One', cursive" font-size="42" font-weight="800" fill="#30E3CA" stroke="#302432" stroke-width="1.5" paint-order="stroke">
+            Loko
+          </text>
+        </svg>
+      </a>
+      <nav>
+        <a href="#hero" tabindex="0">Home</a>
+        <a href="#about" tabindex="0">About</a>
+        <a href="#menu" tabindex="0">Menu</a>
+        <a href="#contact" tabindex="0">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" tabindex="-1" aria-label="Hero section introduction">
+      <h1>Café Mocha Loko</h1>
+      <p>Where the coffee's hot, the vibes are cooler, and your funniest mugshot awaits – because life’s too short for boring coffee (and serious faces).</p>
+      <button type="button" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" aria-label="Discover Our Menu">Show Me The Mocha Magic!</button>
+    </section>
+
+    <section id="about" tabindex="-1" aria-labelledby="about-title">
+      <h2 id="about-title">Who Are We? (Besides Awesome)</h2>
+      <p>If caffeine were a superhero, we’d be its colorful, slightly quirky sidekick. We whip up mochas that make your taste buds dance and hopefully your Monday mornings less tragic.</p>
+      <div class="image-section" tabindex="0">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/35076781-3af4-4632-ad59-bb12314abc54.png" alt="Two baristas with big grins making fun and creative mocha latte art in a bright vibrant coffee shop" />
+      </div>
+    </section>
+
+    <section id="menu" tabindex="-1" aria-labelledby="menu-title">
+      <h2 id="menu-title">Mocha-Licious Menu (100% Guac-Free!)</h2>
+      <p>From caffeine-fueled escapades to sweet guilty pleasures, our menu brings the party to your palate. Warning: may cause spontaneous dance moves.</p>
+      <h3 style="color:#a020f0; font-weight:700; font-size: 2.2rem; margin-bottom: 24px; text-align:center;">Crazy Good Coffees</h3>
+      <div class="features-grid" role="list" aria-label="Coffee menu items">
+        <article class="feature-card" tabindex="0" aria-label="Classic Mocha Coffee" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/445f43db-6d25-4735-8941-4913b2eaf222.png" alt="Classic mocha coffee cup topped with whipped cream and cocoa dusting, on a colorful ceramic saucer with playful spoon" />
+          </div>
+          <h3 class="feature-title">The OG Classic Mocha</h3>
+          <p class="feature-description">Like your grandma’s love, but caffeinated and chocolatey. Topped with whipped cream and a sprinkle of ‘you got this.'</p>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-label="Iced Mocha Delight" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/dad7b613-d6db-4885-8957-6bc4d6c79760.png" alt="Tall glass of iced mocha, layered and swirled with chocolate and cream, with a cheeky paper straw" />
+          </div>
+          <h3 class="feature-title">Iced Mocha Delight</h3>
+          <p class="feature-description">Chill like a villain with this iced mocha that brings the party straight to your taste buds — no sunglasses needed.</p>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-label="Mocha Affogato" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4c8a0c85-09be-4f7c-8587-04bdbb983a76.png" alt="Rich mocha espresso poured over velvety vanilla gelato in a cute retro glass" />
+          </div>
+          <h3 class="feature-title">The Sassy Mocha Affogato</h3>
+          <p class="feature-description">Coffee meets ice cream in a love story dripping with drama and deliciousness.</p>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-label="Caramel Mocha" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c8e5225a-e20a-4eba-8c36-af62f7d4e859.png" alt="Caramel mocha in a playful mug with caramel drizzles zig-zagging like a caffeine lightning bolt" />
+          </div>
+          <h3 class="feature-title">Caramel Mocha Blitz</h3>
+          <p class="feature-description">Sweet, sticky, and just a little bit sassy. Warning: May cause spontaneous happy dances.</p>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-label="White Chocolate Mocha" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4167714d-8a59-42c8-b185-00d0444eaee8.png" alt="Sleek white chocolate mocha cup featuring swirl latte art and a impatient sparkle" />
+          </div>
+          <h3 class="feature-title">White Chocolate Wonder</h3>
+          <p class="feature-description">Decadence in a cup — if cauliflower could be chocolate, this would be it. Spoiler alert: It’s chocolate.</p>
+        </article>
+      </div>
+
+      <h3 style="color:#a020f0; font-weight:700; font-size: 2.2rem; margin: 64px 0 24px 0; text-align:center;">Tantalizing Treats</h3>
+      <div class="features-grid" role="list" aria-label="Treat menu items">
+        <article class="feature-card" tabindex="0" aria-label="Chocolate Chip Cookies" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9cbf81e4-adbe-4a7c-9e43-64d6fbc1db84.png" alt="Stack of chocolate chip cookies with gooey melting chocolate chips, dangerously delicious" />
+          </div>
+          <h3 class="feature-title">Cookie Monster’s Dream</h3>
+          <p class="feature-description">Chewy, chocolatey, and totally snack-tastic. Don’t blame us if you polish the whole jar yourself.</p>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-label="Cinnamon Rolls" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f2c7a589-e7be-41d9-b7ab-331c2f4c6bab.png" alt="Big fluffy cinnamon rolls generously glazed, looking like your sweet morning hug" />
+          </div>
+          <h3 class="feature-title">Rollin’ with the Sweetness</h3>
+          <p class="feature-description">Swirls of cinnamon that’ll make your taste buds sing and your worries vanish.</p>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-label="Blueberry Muffins" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fd1ec7a4-2f9d-4d7b-858b-fd2ef11b80e3.png" alt="Golden blueberry muffins bursting with fresh, juicy blueberries, baked to fluffy perfection" />
+          </div>
+          <h3 class="feature-title">Muffin Top Heaven</h3>
+          <p class="feature-description">Hand-baked happiness packed with blueberries. You can eat 'em for breakfast, we won’t tell.</p>
+        </article>
+      </div>
+
+      <h3 style="color:#a020f0; font-weight:700; font-size: 2.2rem; margin: 64px 0 24px 0; text-align:center;">Cakes & Past-A-What?</h3>
+      <div class="features-grid" role="list" aria-label="Cake and pastry menu items">
+        <article class="feature-card" tabindex="0" aria-label="Mocha Cheesecake" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50d99f50-57ac-40f2-9085-03a9759dbaa1.png" alt="Slice of mocha cheesecake with a luscious whipped topping looking too good to share" />
+          </div>
+          <h3 class="feature-title">Cheesecake of Champions</h3>
+          <p class="feature-description">This cake’s so good, you’ll be tempted to buy the whole one. We won’t judge your sharing skills.</p>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-label="Tiramisu" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/775547d1-6ae3-4ded-a7e2-4260598e17cb.png" alt="Italian tiramisu in glass with layers of coffee-soaked cake and creamy mascarpone, dusted with cocoa" />
+          </div>
+          <h3 class="feature-title">Tira-mmm-us</h3>
+          <p class="feature-description">Layers of coffee-soaked magic and creamy dreams, guaranteed to make you say, 'One more bite, please!'</p>
+        </article>
+
+        <article class="feature-card" tabindex="0" aria-label="Chocolate Lava Cake" role="listitem">
+          <div class="feature-image-container">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/53317a56-3542-451a-9b3d-7567b4cc9914.png" alt="Warm chocolate lava cake with oozing molten core, served with berries and powdered sugar" />
+          </div>
+          <h3 class="feature-title">Molten Chocolate Madness</h3>
+          <p class="feature-description">Our lava cake will blow your mind, your diet, and possibly your socks off.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" tabindex="-1" aria-labelledby="contact-title">
+      <h2 id="contact-title">Get in Touch (or Just Send Us Your Cheers)</h2>
+      <p>Whether it’s coffee emergencies, ordering your next caffeine fix, or just to send us funny memes, we’re all ears (and mugs).</p>
+      <address style="text-align:center; font-style: normal; color:#2e2e2e; font-weight: 700;">
+        123 Mocha Street,<br />
+        Coffee City, CO 81001<br />
+        Phone: <a href="tel:+1234567890" aria-label="Call Café Mocha Loko at phone number 123 456 7890">123-456-7890</a><br />
+        Email: <a href="mailto:info@cafemochaloko.com" aria-label="Email Café Mocha Loko at info@cafemochaloko.com">info@cafemochaloko.com</a>
+      </address>
+      <div class="image-section" tabindex="0">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f26efea8-1b87-48fb-9eb1-139e63985d46.png" alt="Vibrant coffee shop with energetic baristas making coffee and goofing around with crazy hats" />
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo" aria-label="Footer">
+    &copy; 2024 Café Mocha Loko · All Rights Reserved (Honestly, we’re surprised we lasted this long)
+  </footer>
+
+  <script>
+    // Change header styles on scroll to colorful mode
+    const header = document.getElementById('header');
+    function onScroll() {
+      if(window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+  </script>
+</body>
+</html>
+
