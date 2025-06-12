@@ -62,30 +62,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 90px;
+      height: 72px;
       max-width: 1200px;
       margin: 0 auto;
     }
-    .logo-link {
-      display: flex;
-      align-items: center;
+    .logo {
+      font-size: 2.25rem;
       user-select: none;
-      cursor: pointer;
-    }
-    .logo-link svg {
-      height: 80px; /* enlarged from 56 to 80 */
-      width: auto;
-      margin-right: 16px;
-      flex-shrink: 0;
-    }
-    .logo-text {
-      font-size: 2.75rem;
       letter-spacing: 0.1em;
-      font-weight: 800;
-      font-family: 'Fredoka One', cursive;
-      color: currentColor;
-      user-select: none;
-      white-space: nowrap;
+      cursor: default;
     }
     nav {
       display: flex;
@@ -123,7 +108,7 @@
 
     /* Hero Section */
     main {
-      padding-top: 110px; /* increased padding to accommodate larger header */
+      padding-top: 96px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -196,7 +181,7 @@
     section h2 {
       font-family: 'Fredoka One', cursive;
       font-size: 3rem;
-      color: #a020f0;
+      color: #a020f0; /* vivid purple */
       margin-bottom: 28px;
       text-align: center;
       user-select: none;
@@ -239,7 +224,7 @@
       overflow: hidden;
     }
     .feature-card::before {
-      content: "☕️";
+      content: "☕️"; /* playful coffee cup */
       font-size: 6rem;
       position: absolute;
       top: -18px;
@@ -393,31 +378,7 @@
 <body>
   <header id="header" role="banner">
     <div class="header-container container" role="navigation" aria-label="Primary Navigation">
-      <a href="#hero" class="logo-link" aria-label="Go to homepage" tabindex="0">
-        <svg width="80" height="80" viewBox="0 0 320 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc" >
-          <title id="logoTitle">Café Mocha Loko Logo</title>
-          <desc id="logoDesc">A colorful playful logo with a stylized coffee cup and the text Mocha Loko</desc>
-          <defs>
-            <linearGradient id="cupGradient" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#FF69B4"/>
-              <stop offset="100%" stop-color="#30E3CA"/>
-            </linearGradient>
-            <filter id="shadow" x="-20" y="-20" width="140" height="140" color-interpolation-filters="sRGB" >
-              <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#30E3CA" flood-opacity="0.5"/>
-            </filter>  
-          </defs>
-          <g filter="url(#shadow)">
-            <path d="M41.293 50a12 12 0 1124 0 12 12 0 01-24 0z" fill="url(#cupGradient)"/>
-            <path d="M50.293 38v-6m-7 8h14m-14 16h14m1-7c6 0 10 5 8 11-2 7-16 5-16-3v-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-          <text x="80" y="65" font-family="'Fredoka One', cursive" font-size="42" font-weight="800" fill="url(#cupGradient)" stroke="#302432" stroke-width="1.5" paint-order="stroke">
-            Mocha
-          </text>
-          <text x="80" y="95" font-family="'Fredoka One', cursive" font-size="42" font-weight="800" fill="#30E3CA" stroke="#302432" stroke-width="1.5" paint-order="stroke">
-            Loko
-          </text>
-        </svg>
-      </a>
+      <a href="#hero" class="logo" tabindex="0">Café Mocha Loko</a>
       <nav>
         <a href="#hero" tabindex="0">Home</a>
         <a href="#about" tabindex="0">About</a>
